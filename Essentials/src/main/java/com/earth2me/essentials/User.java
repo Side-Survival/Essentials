@@ -14,6 +14,7 @@ import com.earth2me.essentials.utils.NumberUtil;
 import com.earth2me.essentials.utils.TriState;
 import com.earth2me.essentials.utils.VersionUtil;
 import com.google.common.collect.Lists;
+import lv.side.lang.api.LangAPI;
 import net.ess3.api.IEssentials;
 import net.ess3.api.MaxMoneyException;
 import net.ess3.api.TranslatableException;
@@ -53,7 +54,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
-import static com.earth2me.essentials.I18n.tlLiteral;
+//import static com.earth2me.essentials.I18n.tlLiteral;
 import static com.earth2me.essentials.I18n.tlLocale;
 
 public class User extends UserData implements Comparable<User>, IMessageRecipient, net.ess3.api.IUser {
@@ -1087,10 +1088,16 @@ public class User extends UserData implements Comparable<User>, IMessageRecipien
 
     @Override
     public String playerTl(String tlKey, Object... args) {
-        if (ess.getSettings().isPerPlayerLocale()) {
-            return tlLocale(getPlayerLocale(ess.getPlayerLocaleProvider().getLocale(base)), tlKey, args);
-        }
-        return tlLiteral(tlKey, args);
+        //if (ess.getSettings().isPerPlayerLocale()) {
+        //    final String sideLang = LangAPI.getPlayerSelected(base.getName());
+        //    System.out.println(sideLang);
+        //    return tlLocale(new Locale(sideLang), tlKey, args);
+        //}
+        //return tlLiteral(tlKey, args);
+
+        // Side Realms | By: wxip
+        final String sideLang = LangAPI.getPlayerSelected(base.getName());
+        return tlLocale(new Locale(sideLang), tlKey, args);
     }
 
     @Override

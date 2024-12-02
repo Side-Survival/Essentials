@@ -44,6 +44,7 @@ import com.earth2me.essentials.utils.AdventureUtil;
 import com.earth2me.essentials.utils.FormatUtil;
 import com.earth2me.essentials.utils.VersionUtil;
 import io.papermc.lib.PaperLib;
+import lv.side.lang.api.LangAPI;
 import net.ess3.api.Economy;
 import net.ess3.api.IEssentials;
 import net.ess3.api.IItemDb;
@@ -1464,7 +1465,19 @@ public class Essentials extends JavaPlugin implements net.ess3.api.IEssentials {
 
     @Override
     public PlayerLocaleProvider getPlayerLocaleProvider() {
-        return playerLocaleProvider;
+        // Side Realms | By: wxip
+        //return playerLocaleProvider;
+        return new PlayerLocaleProvider() {
+            @Override
+            public String getLocale(Player player) {
+                return LangAPI.getPlayerSelected(player.getName());
+            }
+
+            @Override
+            public String getDescription() {
+                return "Side Realms langugange providar";
+            }
+        };
     }
 
     @Override

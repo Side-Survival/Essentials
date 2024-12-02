@@ -14,6 +14,7 @@ import com.earth2me.essentials.utils.LocationUtil;
 import com.earth2me.essentials.utils.MaterialUtil;
 import com.earth2me.essentials.utils.VersionUtil;
 import io.papermc.lib.PaperLib;
+import lv.side.lang.api.LangAPI;
 import net.ess3.api.IEssentials;
 import net.ess3.api.events.AfkStatusChangeEvent;
 import net.ess3.provider.CommandSendListenerProvider;
@@ -477,6 +478,10 @@ public class EssentialsPlayerListener implements Listener, FakeAccessor {
 
                 user.setConfirmingClearCommand(null);
                 user.getConfirmingPayments().clear();
+
+                // Side Realms | By: wxip
+                final String sideLang = LangAPI.getPlayerSelected(user.getName());
+                user.getPlayerLocale(sideLang);
 
                 user.stopTransaction();
             }
